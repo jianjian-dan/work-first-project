@@ -1,0 +1,51 @@
+.page{
+	width: 10rem;
+	min-height: 100vh;
+	background: #BE0732;
+	padding: 0.53333rem 0 1.85333rem 0;
+}
+.prize-box{
+	width: 9.196rem;
+	min-height: 2.13333rem;
+	background: #FFFFFF;
+	border-radius: 0.4rem;
+	box-sizing: border-box;
+	margin: 0.26667rem auto 0;
+	padding: 0 0.41333rem 0 0.38667rem;
+	display: flex;
+	align-items: center;
+}
+.prize-img{
+	width: 1.21333rem;
+	height: 1.2rem;
+
+}
+.prize-name{
+	font-size: 0.45333rem;
+	color: #333333;
+	margin: 0.6rem 0.26667rem 0.6rem 0.26667rem;
+	flex: 1;
+}
+.btn1,.btn2,.btn3{
+	width: 1.58667rem;
+	height: 0.69333rem;
+	border-radius: 0.34667rem;
+	text-align: center;
+	line-height: 0.69333rem;
+	font-size: 0.34667rem;
+}
+/* 待发放 */
+.btn1{
+	color: #FFFFFF;
+	background: #999999;
+} 
+/* 去使用 */
+.btn2{
+	color: #FFFFFF;
+	background: #F29427;
+}
+/* 已发放 */
+.btn3{
+	border: 1px solid #F29427;
+	color: #F29427;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>贵州联通</title>
+	<link rel="stylesheet" href="./css/prize.css">
+	<link rel="stylesheet" href="./css/common.css">
+	<script src="./js/flexible.js"></script>
+	<script src="./js/vue.min.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<div class="page">
+			<div class="prize-box" v-for="(item,index) in prizeStatus" :key="index">
+				<img :src="item.img" class="prize-img">
+				<span class="prize-name">{{item.name}}</span>
+				<div :class="{'btn':item.status==0,'btn1':item.status==1,'btn2':item.status==3,'btn3':item.status==2}">
+					{{item.type}}</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	const app = new Vue({
+		el: '#app',
+		computed: {
+			prizeStatus () {
+				this.prizeList.forEach(val => {
+					if (val.status == 1) {
+						val.type = '待发放'
+					} else if (val.status == 2) {
+						val.type = '已发放'
+					} else if (val.status == 3) {
+						val.type = '去使用'
+					}
+				});
+				return this.prizeList
+			}
+		},
+		data: {
+			prizeList: [
+				// status 1待发放,2已发放,3去使用
+				{
+					img: './img/prize1.png',
+					name: '10元话费券',
+					status: 3
+				},
+				{
+					img: './img/prize2.png',
+					name: '腾讯视频VIP会员-月卡',
+					status: 1
+				},
+				{
+					img: './img/prize3.png',
+					name: '优酷VIP会员-月卡',
+					status: 3
+				},
+				{
+					img: './img/prize4.png',
+					name: '顺丰同城30元券包',
+					status: 2
+				},
+				{
+					img: './img/prize5.png',
+					name: '高德打车100元优惠券',
+					status: 2
+				},
+				{
+					img: './img/prize6.png',
+					name: '京东30元红包',
+					status: 2
+				},
+				{
+					img: './img/prize7.png',
+					name: '网易严选Pro纯享季卡',
+					status: 2
+				},
+				{
+					img: './img/prize8.png',
+					name: '百度网盘会员礼包',
+					status: 2
+				},
+				{
+					img: './img/prize9.png',
+					name: '京东到家会员卡',
+					status: 2
+				},
+				{
+					img: './img/prize10.png',
+					name: '滴滴快车10元代金券',
+					status: 2
+				},
+			]
+		},
+		mounted () {
+		},
+		beforeDestroy () {
+		},
+		methods: {
+		},
+	})
+</script>

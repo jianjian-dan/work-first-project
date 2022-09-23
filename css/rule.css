@@ -1,0 +1,45 @@
+.page{
+	width: 10rem;
+	min-height: 100vh;
+	background: #BE0732;
+	padding: 2rem 0;
+}
+.rule-box{
+	margin: 0 auto;
+	width: 9.2rem;
+	height: 15rem;
+	background: #FFFFFF;
+	border-radius: .32rem;
+	padding-bottom: .32rem;
+}
+.rule-bg{
+	margin: -.5rem auto 0.4rem;
+	width: 100%;
+	height: 1.06rem;
+}
+.rule-item{
+	padding:0 0.413rem;
+}
+.rule-name, .rule-time{
+	color: #464B5D;
+}
+.rule-name{
+	font-size: .4rem;
+	margin-bottom: .32rem;
+	font-weight: 700;
+}
+.rule-time{
+	font-size: .32rem;
+	margin-bottom: 0.44rem;
+	line-height: .6rem;
+}
+.red-txt{
+	font-size: .32rem;
+	color: #D24833;
+	padding:0 0.413rem;
+}
+.box{
+	overflow-y: auto;
+	height:14rem;
+	padding-bottom: .32rem;
+}

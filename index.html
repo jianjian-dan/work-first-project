@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贵州联通</title>
+    <link rel="stylesheet" href="./css/index.css">
+	<link rel="stylesheet" href="./css/common.css">
+	<script src="./js/flexible.js"></script>
+	<script src="./js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="page">
+            <!-- 奖品，规则 -->
+            <div class="rules" @click="toRules"></div>
+            <div class="record" @click="toPrize"></div>
+            <!-- 活动 -->
+            <div class="active-box">
+                <div id="roadline"></div>
+                <ul id="active-group">
+                    <li class="active-item" v-for="item in dataList" :key="item.id">
+                        <img class="active-pic" :src="item.img">
+                        <p :class=" item.class ">{{ item.isDone?'已打卡':item.text }}</p>
+                    </li>
+                </ul>
+            </div>
+            <!-- 打卡 -->
+            <div :class=" isToday? 'sign-done':'sign-in' " @click="playcard"></div>
+            <!-- 业务 -->
+            <div class="work">
+                <ul class="work-group">
+                    <li>
+                        <img src="./img/work4.png" >
+                        <p>缴费充值</p>
+                    </li>
+                    <li>
+                        <img src="./img/work3.png" >
+                        <p>余量查询</p>
+                    </li>
+                    <li class="work-item2">
+                        <img src="./img/work2.png" >
+                        <p>流量包办理</p>
+                    </li>
+                    <li>
+                        <img src="./img/work1.png" >
+                        <p>电子发票</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 未中奖弹框 -->
+			<div class="shade" v-if="noPrize">
+                <div class="no-prize">
+                    <div class="no-prize-top"></div>
+                    <p class="no-prize-content">恭喜您前进一步，离奖品很近了，继续加油！</p>
+                    <div class="no-prize-bottom" @click="close">知道啦</div>
+                    <div class="close" @click="close"></div>
+                </div>
+            </div>
+            <!-- 中奖弹框 -->
+		    <div class="shade" v-if="hasPrize">
+                <div class="no-prize">
+                    <div class="no-prize-top"></div>
+                    <p class="has-prize-content1">恭喜您获得XXX奖品</p>
+                    <p class="has-prize-content2">请前往<a href="./prize.html">【我的奖品】</a>页查看</p>
+                    <div class="no-prize-bottom" @click="close">知道啦</div>
+                    <div class="close" @click="close"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    const app = new Vue({
+        el:'#app',
+        data: {
+            isToday:false,
+            noPrize:false,
+            hasPrize:false,
+            taskStartTime:null,
+            dataList:[
+                {
+                    id:'2022-09-21',
+                    text:'1天',
+                    isDone:false,
+                    img: './img/day1.png',
+                    class:'active-font1'
+                },
+                {
+                    id:'2022-09-22',
+                    text:'2天',
+                    isDone:false,
+                    img: './img/day2.png',
+                    class:'active-font1'
+                },
+                {
+                    id:'2022-09-23',
+                    text:'3天',
+                    isDone:false,
+                    img: './img/day3.png',
+                    class:'active-font1'
+                },
+                {
+                    id:'2022-09-24',
+                    text:'4天',
+                    isDone:false,
+                    img: './img/day4.png',
+                    class:'active-font1'
+                },
+                {
+                    id:'2022-09-25',
+                    text:'5天',
+                    isDone:false,
+                    img: './img/day5.png',
+                    class:'active-font1'
+                },
+                {
+                    id:'2022-09-26',
+                    text:'6天',
+                    isDone:false,
+                    img: './img/day6.png',
+                    class:'active-font1'
+                },
+                {
+                    id:'2022-09-27',
+                    text:'7天',
+                    isDone:false,
+                    img: './img/day7.png',
+                    class:'active-font1'
+                },
+                {
+                    id:'2022-09-28',
+                    text:'8天',
+                    isDone:false,
+                    img: './img/day8.png',
+                    class:'active-font1'
+                },
+                {
+                    id:'2022-09-29',
+                    text:'9天',
+                    isDone:false,
+                    img: './img/day9.png',
+                    class:'active-font1'
+                },
+                {
+                    id:'2022-09-30',
+                    text:'10天',
+                    isDone:false,
+                    img: './img/day10.png',
+                    class:'active-font1'
+                },    
+            ]
+        },
+        methods: {
+            playcard(){
+                if (this.isToday) {
+                    return;
+                }
+                this.dataList.map((item) => {
+                    if( item.id === this.taskStartTime ){
+                        item.isDone = true 
+                        item.class = 'active-font2'
+                        this.isToday = true
+                    }
+                })
+                console.log(this.isToday);
+
+                // 随机出奖
+                if( Math.floor(Math.random()*4) <= 2){
+                    this.noPrize = true
+                }else{
+                    this.hasPrize = true
+                }
+                
+            },
+            toRules(){
+                window.location.href = './rule.html'
+            },
+            toPrize(){
+                window.location.href = './prize.html'
+            },
+            close(){
+                this.noPrize = false
+                this.hasPrize = false
+            }
+        },
+        mounted() {
+            // 在加载页面时就遍历数组，渲染页面
+
+            // 获取当前时间并格式化
+            let date = new Date();
+            // getMonth()中得到的数字加一为月份，即8为九月
+            if (date.getMonth() < 9) {
+                this.taskStartTime = date.getFullYear() + "-0" + (date.getMonth() + 1) + "-"
+            } else {
+                this.taskStartTime = date.getFullYear() + "-" + (date.getMonth() + 1) + "-"
+            }
+            if (date.getDate() < 10) {
+                this.taskStartTime += "0" + date.getDate()
+            } else {
+                this.taskStartTime += date.getDate()
+            }
+            console.log(this.taskStartTime.split("-")[2])
+
+            // 遍历数组
+            this.dataList.forEach((item) => {
+                    // 如果今天之前没有打卡，图标文字变为未打卡
+                    if( date.getFullYear() === 2022 && date.getMonth() === 8 && item.id.split("-")[2] < this.taskStartTime.split("-")[2] ){
+                        item.text = "未打卡"
+                        item.class = 'active-font2'
+                    }
+                    // 判断今天打没打卡
+                    else if( date.getFullYear() === 2022 && date.getMonth() === 8 && item.id.split("-")[2] === this.taskStartTime.split("-")[2] ){
+                        // 如果今天已经打卡了
+                        if(item.isDone === true){
+                            item.class = 'active-font2'
+                            item.isDone = true
+                            this.isToday = true
+                        }
+                    }
+            })
+        },
+    })
+</script>
+</html>
